@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+
+    <!-- Import Firebase initialization and authentication check scripts -->
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+
+    <title>User Profile</title>
+</head>
+
+<body class="bg-gray-100 h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">User Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-4">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="job_board.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Job Board
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="aplcnt_profile.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9.955 9.955 0 0112 15a9.955 9.955 0 016.879 2.804m-13.758 0A9.955 9.955 0 0112 21a9.955 9.955 0 016.879-2.804m-13.758 0a9.955 9.955 0 010-13.608A9.955 9.955 0 0112 3a9.955 9.955 0 016.879 2.804m-13.758 0a9.955 9.955 0 010 13.608m13.758-13.608A9.955 9.955 0 0112 3c-2.7 0-5.135 1.089-6.879 2.804m13.758 0a9.955 9.955 0 010 13.608">
+                        </svg>
+                        Profile
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="status.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4">
+                            </path>
+                        </svg>
+                        Application Status
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col ml-64">
+        <!-- Header -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end w-full sticky top-0">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li class="mb-2">
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main content area displaying user's profile details -->
+        <main class="p-6 flex-1">
+            <h2 class="text-xl font-bold mb-4">Your Profile</h2>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="hidden text-center text-gray-500 my-4">
+                <svg class="animate-spin h-5 w-5 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+                <p>Loading user profile...</p>
+            </div>
+
+            <!-- User Details Section -->
+            <div id="userDetails" class="bg-white shadow rounded-lg p-4 mb-6">
+                <h3 class="text-lg font-bold mb-4">Basic Information</h3>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p><strong class="font-medium">Full Name:</strong> <span id="userName">Loading...</span></p>
+                        <p><strong class="font-medium">Email:</strong> <span id="userEmail">Loading...</span></p>
+                        <p><strong class="font-medium">Location:</strong> <span id="userLocation">Loading...</span></p>
+                    </div>
+                    <button id="editProfileButton" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                        Edit
+                    </button>
+                </div>
+
+                <!-- Edit Form (Hidden by default) -->
+                <form id="editProfileForm" class="hidden mt-4">
+                    <div class="mb-4">
+                        <label for="editFirstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                        <input type="text" id="editFirstName"
+                            class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="editLastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input type="text" id="editLastName"
+                            class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm">
+                    </div>
+                    <div class="mb-4">
+                        <label for="editRegion" class="block text-sm font-medium text-gray-700">Region</label>
+                        <select id="editRegion" class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm">
+                            <option value="">Select your region</option>
+                            <!-- Region options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editProvince" class="block text-sm font-medium text-gray-700">Province</label>
+                        <select id="editProvince" class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm"
+                            disabled>
+                            <option value="">Select your province</option>
+                            <!-- Province options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editCity" class="block text-sm font-medium text-gray-700">City/Municipality</label>
+                        <select id="editCity" class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm" disabled>
+                            <option value="">Select your city/municipality</option>
+                            <!-- City/Municipality options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="editBarangay" class="block text-sm font-medium text-gray-700">Barangay</label>
+                        <input type="text" id="editBarangay"
+                            class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm"
+                            placeholder="Enter your barangay" disabled>
+                    </div>
+
+                    <div class="flex justify-end space-x-4">
+                        <button id="saveProfileButton"
+                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                            Save
+                        </button>
+                        <button id="cancelEditButton" type="button"
+                            class="hover:bg-red-100 text-red-700 px-4 py-2 rounded">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Qualifications Section -->
+            <div id="qualificationsSection" class="bg-white shadow rounded-lg p-4 mb-6">
+                <h3 class="text-lg font-bold mb-4">Qualifications</h3>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p><strong class="font-medium">Education:</strong> <span id="userEducation">Loading...</span>
+                        </p>
+                        <p><strong class="font-medium">Skills:</strong> <span id="userSkills">Loading...</span></p>
+                        <p><strong class="font-medium">Sex:</strong> <span id="userGender">Loading...</span></p>
+                        <p><strong class="font-medium">Experience (Years):</strong> <span id="userExperience">Loading...</span>
+                        </p>
+                    </div>
+                    <button id="editQualificationsButton"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                        Edit
+                    </button>
+                </div>
+
+                <!-- Edit Qualifications Form (Hidden by default) -->
+                <form id="editQualificationsForm" class="hidden mt-4">
+                    <!-- Education Field as Dropdown -->
+                    <div class="mb-4">
+                        <label for="editEducation" class="block text-sm font-medium text-gray-700">Education</label>
+                        <select id="editEducation" class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm">
+                            <option value="">Select your education level</option>
+                            <option value="Less than high school">Less than high school</option>
+                            <option value="High school">High school</option>
+                            <option value="Graduated from high school">Graduated from high school</option>
+                            <option value="Vocational course">Vocational course</option>
+                            <option value="Completed vocational course">Completed vocational course</option>
+                            <option value="Associate's studies">Associate's studies</option>
+                            <option value="Completed associate's degree">Completed associate's degree</option>
+                            <option value="Bachelor's studies">Bachelor's studies</option>
+                            <option value="Bachelor's degree graduate">Bachelor's degree graduate</option>
+                            <option value="Graduate studies (Masters)">Graduate studies (Masters)</option>
+                            <option value="Master's degree graduate">Master's degree graduate</option>
+                            <option value="Post-graduate studies (Doctorate)">Post-graduate studies (Doctorate)</option>
+                            <option value="Doctoral degree graduate">Doctoral degree graduate</option>
+                        </select>
+                    </div>
+
+                    <!-- Skills Field -->
+                    <div class="mb-4">
+                        <label for="editSkills" class="block text-sm font-medium text-gray-700">Skills</label>
+                        <input type="text" id="editSkills"
+                            class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm">
+                    </div>
+
+                    <!-- Gender Field -->
+                    <div class="mb-4">
+                        <label for="editGender" class="block text-sm font-medium text-gray-700">Gender</label>
+                        <select id="editGender" class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm">
+                            <option value="">Select your gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
+                    <!-- Experience Field -->
+                    <div class="mb-4">
+                        <label for="editExperience" class="block text-sm font-medium text-gray-700">Experience</label>
+                        <select id="editExperience" name="experience"
+                            class="mt-1 block w-full border px-3 py-2 rounded-lg shadow-sm" required>
+                            <option value="" disabled selected>Select required experience</option>
+                            <option value="0">No experience (0 years)</option>
+                            <option value="1-2">1 - 2 years</option>
+                            <option value="3-5">3 - 5 years</option>
+                            <option value="6-10">6 - 10 years</option>
+                            <option value="11-15">11 - 15 years</option>
+                            <option value="16-20">16 - 20 years</option>
+                            <option value="20+">20+ years</option>
+                        </select>
+                    </div>
+
+                    <div class="flex justify-end space-x-4">
+                        <button id="saveQualificationsButton"
+                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                            Save
+                        </button>
+                        <button id="cancelQualificationsButton" type="button"
+                            class="hover:bg-red-100 text-red-700 px-4 py-2 rounded">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Resume Upload Section -->
+            <div id="resumeUpload" class="bg-white shadow rounded-lg p-4">
+                <h3 class="text-lg font-semibold mb-2">Upload Your Resume (optional)</h3>
+                <!-- Added Note with Acceptable Formats and Size Limit -->
+                <p class="text-sm text-gray-900 mb-2">
+                    Note: Your profile is the first thing recruiters see and not your uploaded resume,
+                    so make sure your profile is as complete and detailed as your uploaded resume.
+                </p>
+                <div class="flex items-center space-x-4">
+                    <input type="text" id="resumeFileName" class="flex-grow px-4 py-2 border rounded"
+                        placeholder="No file selected" readonly>
+                    <input type="file" id="resumeInput" class="hidden">
+                    <button id="uploadResumeButton"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Upload Resume</button>
+                    <button id="deleteResumeButton" class="text-red-700" style="display: none;">✖</button>
+                </div>
+                <p id="uploadStatus" class="mt-4 text-green-600"></p>
+                <p class="text-sm text-gray-600 mb-2">
+                    Acceptable file types are PDF, DOC, and DOCX. Max file size is 10 MB.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for confirming resume deletion -->
+    <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="text-lg font-semibold mb-4">Are you sure you want to delete this?</h3>
+            <p class="mb-4">You will not be able to recover it.</p>
+            <div class="flex justify-end space-x-4">
+                <button id="cancelDeleteButton" class="hover:bg-red-100 text-red-700 px-4 py-2 rounded">Cancel</button>
+                <button id="confirmDeleteButton" class="bg-red-600 text-white px-4 py-2 rounded">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <!-- Include auth_check.js -->
+    <script type="module" src="../../functions/auth_check.js"></script>
+    <!-- Include the loading script -->
+    <script type="module" src="../../functions/loading.js"></script>
+    <!-- Include the welcome message script -->
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <!-- Include scripts for profile management and logout -->
+    <script type="module" src="../../functions/aplcnt_profile.js"></script>
+    <script type="module" src="../../functions/logout.js"></script>
+</body>
+
+</html>

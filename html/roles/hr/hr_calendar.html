@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+
+    <!-- Import Firebase initialization and authentication check scripts -->
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+
+    <title>HR Dashboard</title>
+</head>
+
+<body class="bg-gray-100 h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">HR Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-2">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_dashboard.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4"></path>
+                        </svg>
+                        Job Postings
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="applications.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Manage Applications
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="verify_users.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9.955 9.955 0 0112 15a9.955 9.955 0 016.879 2.804m-13.758 0A9.955 9.955 0 0112 21a9.955 9.955 0 016.879-2.804m-13.758 0a9.955 9.955 0 010-13.608A9.955 9.955 0 0112 3a9.955 9.955 0 016.879 2.804m-13.758 0a9.955 9.955 0 010 13.608m13.758-13.608A9.955 9.955 0 0112 3c-2.7 0-5.135 1.089-6.879 2.804m13.758 0a9.955 9.955 0 010 13.608">
+                        </svg>
+                        Manage Users
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_calendar.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4m4-4v4">
+                            </path>
+                        </svg>
+                        Interview Schedule
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="rejected_mrfs.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Reports
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Client</span>
+                    <a href="mrf_panel.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        MRF
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="manage_clients.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        View Clients
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">EMPLOYEE</span>
+                    <a href="dm.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Employee Assessment
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="view_evaluations.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Employee Performance
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_requirements.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Employee Requirements
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col ml-64">
+        <!-- Header -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end w-full sticky top-0">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li class="mb-2">
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main content area -->
+        <main class="p-6 flex-1">
+            <h2 class="text-xl font-bold mb-4">Interview Schedule</h2>
+            <!-- Navigation Tabs -->
+            <div class="flex space-x-4 justify-around mb-8">
+                <h3 class="text-lg font-semibold mb-4">Navigation</h3>
+                <div>
+                    <button id="navApplicantsSchedule"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Applicants
+                        Schedule</button>
+                    <button id="navRescheduleCancel"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Reschedule/Cancel
+                        Interview</button>
+                    <button id="navInterviewResults"
+                        class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Interview
+                        Results</button>
+                </div>
+            </div>
+            <!-- Calendar Container -->
+            <div id="calendar" class="bg-white rounded-lg shadow p-6 max-w-4xl mx-auto mt-8">
+                <div class="flex justify-between items-center mb-4">
+                    <button id="prevMonth"
+                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                        Prev
+                    </button>
+                    <h3 id="calendarMonth" class="text-xl font-semibold"></h3>
+                    <button id="nextMonth"
+                        class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded">
+                        Next
+                    </button>
+                </div>
+                <div class="grid grid-cols-7 gap-2 text-center">
+                    <div class="font-bold">Sun</div>
+                    <div class="font-bold">Mon</div>
+                    <div class="font-bold">Tue</div>
+                    <div class="font-bold">Wed</div>
+                    <div class="font-bold">Thu</div>
+                    <div class="font-bold">Fri</div>
+                    <div class="font-bold">Sat</div>
+                    <div id="days" class="col-span-7 grid grid-cols-7 gap-2">
+                        <!-- Days will be injected here by the calendar.js script -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Applicants List Section -->
+            <div id="interviewApplicants" class="bg-white rounded-lg shadow p-6 max-w-4xl mx-auto mt-8">
+                <h3 class="text-xl font-semibold mb-4">Schedule Applicants Interview</h3>
+                <ul id="applicantList" class="space-y-4">
+                    <!-- Applicant items will be injected here -->
+                </ul>
+            </div>
+
+            <!-- Reschedule/Cancel List Section -->
+            <div id="rescheduleCancelSection" class="bg-white rounded-lg shadow p-6 max-w-4xl mx-auto mt-8">
+                <h3 class="text-xl font-semibold mb-4">List of Applicants to Interview</h3>
+
+                <!-- HR Filter Dropdown -->
+                <div class="mb-4">
+                    <label for="hrFilter" class="block text-gray-700">Filter by HR:</label>
+                    <select id="hrFilter" class="mt-1 block w-full border border-gray-300 rounded-md">
+                        <option value="">All</option>
+                        <!-- Options will be dynamically populated with HR personnel -->
+                    </select>
+                </div>
+
+                <ul id="rescheduleCancelList" class="space-y-4">
+                    <!-- Reschedule/Cancel items will be injected here -->
+                </ul>
+            </div>
+
+            <!-- Results of the Interview Section -->
+            <div id="interviewResultsSection" class="bg-white rounded-lg shadow p-6 max-w-4xl mx-auto mt-8">
+                <h3 class="text-xl font-semibold mb-4">Interview Results</h3>
+                <ul id="interviewResultsList" class="space-y-4">
+                    <!-- Interview results items will be injected here -->
+                </ul>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="hidden text-center text-gray-500 my-4">
+                <svg class="animate-spin h-5 w-5 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+                <p>Loading. Please wait...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Schedule Interview Modal -->
+    <div id="scheduleModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-lg w-full">
+            <h2 class="text-xl font-bold mb-4">Schedule Interview</h2>
+
+            <div class="mb-4">
+                <label for="interviewDate" class="block text-gray-700">Date:</label>
+                <input type="date" id="interviewDate" class="mt-1 block w-full border border-gray-300 rounded-md">
+            </div>
+
+            <div class="mb-4">
+                <label for="interviewTime" class="block text-gray-700">Time:</label>
+                <input type="time" id="interviewTime" class="mt-1 block w-full border border-gray-300 rounded-md">
+            </div>
+
+            <div class="mb-4">
+                <label for="hrPerson" class="block text-gray-700">Interviewer (HR):</label>
+                <select id="hrPerson" class="mt-1 block w-full border border-gray-300 rounded-md">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+
+            <!-- Mode of Interview Dropdown -->
+            <div class="mb-4">
+                <label for="interviewMode" class="block text-gray-700">Mode of Interview:</label>
+                <select id="interviewMode" class="mt-1 block w-full border border-gray-300 rounded-md">
+                    <option value="Face to Face">Face to Face</option>
+                    <option value="Online">Online</option>
+                </select>
+            </div>
+
+            <!-- Interview Type Dropdown -->
+            <div class="mb-4">
+                <label for="interviewType" class="block text-gray-700">Interview Type:</label>
+                <select id="interviewType" class="mt-1 block w-full border border-gray-300 rounded-md">
+                    <option value="Initial Interview">Initial Interview</option>
+                    <option value="Second Interview">Second Interview</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="meetingLink" class="block text-gray-700">Meeting Link:</label>
+                <input type="url" id="meetingLink" class="mt-1 block w-full border border-gray-300 rounded-md"
+                    placeholder="https://meet.google.com/">
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <button id="cancelButton" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
+                <button id="saveButton" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interview Details Modal -->
+    <div id="detailsModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-lg w-full" id="modalContent">
+            <!-- Content will be injected here dynamically -->
+        </div>
+    </div>
+
+    <!-- Interview Result Modal -->
+    <div id="interviewResultModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full">
+            <h2 class="text-xl font-bold mb-4">Record Interview Result</h2>
+            <p class="mb-4">Did the applicant pass the interview?</p>
+            <div class="flex justify-end space-x-4">
+                <button id="interviewPassedButton"
+                    class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Pass</button>
+                <button id="interviewFailedButton"
+                    class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Fail</button>
+                <button id="closeInterviewResultModal"
+                    class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Button with Calendar SVG Icon -->
+    <button id="viewWeekScheduleBtn"
+        class="fixed bottom-8 right-8 bg-blue-300 text-white rounded-full p-4 shadow-lg hover:bg-blue-600 focus:outline-none">
+        <img src="../../assets/calendar.svg" alt="Calendar Icon" class="w-8 h-8">
+    </button>
+
+    <!-- Weekly Schedule Modal -->
+    <div id="weekScheduleModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-lg w-full">
+            <h2 class="text-xl font-bold mb-4">REMINDER: Scheduled Interviews this Week</h2>
+            <ul id="weekScheduleList" class="space-y-4">
+                <!-- Scheduled interviews will be injected here -->
+            </ul>
+            <div class="flex justify-end mt-4">
+                <button id="closeWeekScheduleModal"
+                    class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="rejectionReasonModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg max-w-md w-full relative">
+            <img id="closeRejectionReasonModal" src="../../assets/exit.svg" alt="Close"
+                class="absolute top-2 right-2 w-6 h-6 cursor-pointer hover:opacity-75">
+            <h2 class="text-xl font-bold mb-4">Rejection Reason</h2>
+            <textarea id="rejectionReasonInput" class="w-full border border-gray-300 rounded-md p-2" rows="4"
+                placeholder="Enter the reason for rejection. Ex. Lack of Relevant Skills"></textarea>
+            <div class="flex justify-end space-x-4 mt-4">
+                <button id="submitRejectionReasonButton"
+                    class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the loading script -->
+    <script type="module" src="../../functions/loading.js"></script>
+    <!-- Include the welcome message script -->
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <!-- Include the logout script -->
+    <script type="module" src="../../functions/logout.js"></script>
+    <!-- Include the calendar script -->
+    <script type="module" src="../../functions/calendar.js"></script>
+    <!-- Include the schedule validation script -->
+    <script type="module" src="../../functions/schedule_validation.js"></script>
+    <!-- Include the interview results script -->
+    <script type="module" src="../../functions/interview_results.js"></script>
+    <!-- Include the weekly schedule script -->
+    <script type="module" src="../../functions/weekly_schedule.js"></script>
+    <!-- Include the navigation script -->
+    <script type="module" src="../../functions/navigation.js"></script>
+
+
+
+</body>
+
+</html>

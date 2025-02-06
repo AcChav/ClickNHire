@@ -1,0 +1,916 @@
+{
+  "Ilocos Region": {
+    "Ilocos Norte": [
+      "Laoag",
+      "Batac",
+      "Paoay",
+      "San Nicolas",
+      "Currimao",
+      "Pasuquin",
+      "Pagudpud"
+    ],
+    "Ilocos Sur": [
+      "Vigan",
+      "Candon",
+      "Narvacan",
+      "Santa Maria",
+      "Bantay",
+      "Santiago",
+      "Tagudin"
+    ],
+    "La Union": [
+      "San Fernando",
+      "Bauang",
+      "Agoo",
+      "Rosario",
+      "Aringay",
+      "Luna",
+      "Naguilian"
+    ],
+    "Pangasinan": [
+      "Dagupan",
+      "Urdaneta",
+      "Lingayen",
+      "Alaminos",
+      "San Carlos",
+      "Bolinao",
+      "Manaoag",
+      "Mangaldan",
+      "Binmaley"
+    ]
+  },
+  "National Capital Region (NCR)": {
+    "Metro Manila": [
+      "Caloocan",
+      "Las Piñas",
+      "Makati",
+      "Malabon",
+      "Mandaluyong",
+      "Manila",
+      "Marikina",
+      "Muntinlupa",
+      "Navotas",
+      "Parañaque",
+      "Pasay",
+      "Pasig",
+      "Pateros",
+      "Quezon City",
+      "San Juan",
+      "Taguig",
+      "Valenzuela"
+    ]
+  },
+  "Cagayan Valley": {
+    "Batanes": ["Basco", "Itbayat", "Ivana", "Mahatao", "Sabtang", "Uyugan"],
+    "Cagayan": [
+      "Tuguegarao",
+      "Aparri",
+      "Ballesteros",
+      "Lal-lo",
+      "Gonzaga",
+      "Baggao",
+      "Claveria",
+      "Penablanca"
+    ],
+    "Isabela": [
+      "Ilagan",
+      "Cauayan",
+      "Santiago",
+      "Roxas",
+      "San Mateo",
+      "Cabagan",
+      "Tumauini",
+      "Jones",
+      "Alicia"
+    ],
+    "Nueva Vizcaya": [
+      "Bayombong",
+      "Solano",
+      "Bambang",
+      "Aritao",
+      "Bagabag",
+      "Dupax del Sur",
+      "Kasibu"
+    ],
+    "Quirino": [
+      "Cabarroguis",
+      "Diffun",
+      "Saguday",
+      "Maddela",
+      "Nagtipunan",
+      "Aglipay"
+    ]
+  },
+  "Central Luzon": {
+    "Aurora": [
+      "Baler",
+      "Maria Aurora",
+      "Dipaculao",
+      "Dingalan",
+      "San Luis",
+      "Casiguran",
+      "Dilasag",
+      "Dinalungan"
+    ],
+    "Bataan": [
+      "Balanga",
+      "Mariveles",
+      "Dinalupihan",
+      "Orani",
+      "Hermosa",
+      "Limay",
+      "Pilar",
+      "Bagac",
+      "Morong"
+    ],
+    "Bulacan": [
+      "Malolos",
+      "Meycauayan",
+      "San Jose del Monte",
+      "Bocaue",
+      "Santa Maria",
+      "Plaridel",
+      "Baliuag",
+      "Marilao",
+      "Hagonoy"
+    ],
+    "Nueva Ecija": [
+      "Cabanatuan",
+      "Palayan",
+      "Gapan",
+      "San Jose City",
+      "Santa Rosa",
+      "Talavera",
+      "Guimba",
+      "Sto. Domingo",
+      "Nampicuan"
+    ],
+    "Pampanga": [
+      "San Fernando",
+      "Angeles City",
+      "Mabalacat",
+      "Guagua",
+      "Magalang",
+      "Mexico",
+      "Porac",
+      "Floridablanca",
+      "Lubao"
+    ],
+    "Tarlac": [
+      "Tarlac City",
+      "Concepcion",
+      "Capas",
+      "Paniqui",
+      "Bamban",
+      "Gerona",
+      "La Paz",
+      "Victoria",
+      "San Manuel"
+    ],
+    "Zambales": [
+      "Olongapo",
+      "Iba",
+      "Subic",
+      "San Antonio",
+      "San Marcelino",
+      "Botolan",
+      "Masinloc",
+      "Palauig",
+      "Candelaria",
+      "Sta. Cruz"
+    ]
+  },
+  "CALABARZON": {
+    "Batangas": [
+      "Batangas City",
+      "Lipa",
+      "Tanauan",
+      "Nasugbu",
+      "Balayan",
+      "Bauan",
+      "San Juan",
+      "Sto. Tomas",
+      "Taal",
+      "Rosario"
+    ],
+    "Cavite": [
+      "Tagaytay",
+      "Trece Martires",
+      "Dasmariñas",
+      "Imus",
+      "Bacoor",
+      "Cavite City",
+      "General Trias",
+      "Silang",
+      "Naic",
+      "Tanza"
+    ],
+    "Laguna": [
+      "Santa Rosa",
+      "Calamba",
+      "San Pablo",
+      "Los Baños",
+      "Biñan",
+      "Cabuyao",
+      "San Pedro",
+      "Nagcarlan",
+      "Pagsanjan",
+      "Siniloan"
+    ],
+    "Quezon": [
+      "Lucena",
+      "Tayabas",
+      "Candelaria",
+      "Sariaya",
+      "Gumaca",
+      "Mauban",
+      "Atimonan",
+      "Tiaong",
+      "Pagbilao",
+      "Lopez"
+    ],
+    "Rizal": [
+      "Antipolo",
+      "Rodriguez",
+      "San Mateo",
+      "Taytay",
+      "Cainta",
+      "Angono",
+      "Binangonan",
+      "Teresa",
+      "Baras",
+      "Cardona"
+    ]
+  },
+  "MIMAROPA": {
+    "Marinduque": [
+      "Boac",
+      "Gasan",
+      "Mogpog",
+      "Santa Cruz",
+      "Torrijos",
+      "Buenavista"
+    ],
+    "Occidental Mindoro": [
+      "Mamburao",
+      "San Jose",
+      "Sablayan",
+      "Abra de Ilog",
+      "Paluan",
+      "Lubang",
+      "Rizal",
+      "Calintaan"
+    ],
+    "Oriental Mindoro": [
+      "Calapan",
+      "Pinamalayan",
+      "Naujan",
+      "Victoria",
+      "Roxas",
+      "Bongabong",
+      "Gloria",
+      "Mansalay",
+      "Bansud",
+      "Puerto Galera"
+    ],
+    "Palawan": [
+      "Puerto Princesa",
+      "Coron",
+      "El Nido",
+      "Brooke's Point",
+      "Narra",
+      "Roxas",
+      "San Vicente",
+      "Quezon",
+      "Bataraza",
+      "Culion"
+    ],
+    "Romblon": [
+      "Romblon",
+      "Odiongan",
+      "Cajidiocan",
+      "San Fernando",
+      "San Agustin",
+      "Looc",
+      "Magdiwang",
+      "Ferrol",
+      "Santa Fe",
+      "Corcuera"
+    ]
+  },
+  "Bicol Region": {
+    "Albay": [
+      "Legazpi",
+      "Tabaco",
+      "Ligao",
+      "Daraga",
+      "Camalig",
+      "Guinobatan",
+      "Oas",
+      "Polangui",
+      "Rapu-Rapu"
+    ],
+    "Camarines Norte": [
+      "Daet",
+      "Jose Panganiban",
+      "Labo",
+      "Paracale",
+      "Capalonga",
+      "Mercedes",
+      "Basud",
+      "Talisay"
+    ],
+    "Camarines Sur": [
+      "Naga",
+      "Iriga",
+      "Pili",
+      "Caramoan",
+      "Baao",
+      "Bula",
+      "Calabanga",
+      "Milaor",
+      "Nabua",
+      "Ragay"
+    ],
+    "Catanduanes": [
+      "Virac",
+      "San Andres",
+      "Bato",
+      "Baras",
+      "Caramoran",
+      "Gigmoto",
+      "Pandan",
+      "Panganiban"
+    ],
+    "Masbate": [
+      "Masbate City",
+      "Aroroy",
+      "Cataingan",
+      "Uson",
+      "Placer",
+      "San Jacinto",
+      "San Pascual",
+      "Dimasalang"
+    ],
+    "Sorsogon": [
+      "Sorsogon City",
+      "Gubat",
+      "Irosin",
+      "Juban",
+      "Casiguran",
+      "Matnog",
+      "Magallanes",
+      "Bulan",
+      "Donsol"
+    ]
+  },
+  "Cordillera Administrative Region (CAR)": {
+    "Abra": [
+      "Bangued",
+      "Tayum",
+      "Dolores",
+      "Bucay",
+      "Lagayan",
+      "Licuan-Baay",
+      "Manabo",
+      "Peñarrubia"
+    ],
+    "Apayao": [
+      "Kabugao",
+      "Conner",
+      "Flora",
+      "Pudtol",
+      "Luna",
+      "Calanasan",
+      "Santa Marcela"
+    ],
+    "Benguet": [
+      "La Trinidad",
+      "Baguio",
+      "Itogon",
+      "Tuba",
+      "Atok",
+      "Kapangan",
+      "Sablan",
+      "Tublay"
+    ],
+    "Ifugao": [
+      "Lagawe",
+      "Banaue",
+      "Mayoyao",
+      "Kiangan",
+      "Hungduan",
+      "Aguinaldo",
+      "Alfonso Lista",
+      "Asipulo"
+    ],
+    "Kalinga": [
+      "Tabuk",
+      "Pinukpuk",
+      "Rizal",
+      "Balbalan",
+      "Lubuagan",
+      "Tanudan",
+      "Pasil",
+      "Tinglayan"
+    ],
+    "Mountain Province": [
+      "Bontoc",
+      "Sagada",
+      "Bauko",
+      "Tadian",
+      "Besao",
+      "Natonin",
+      "Sabangan",
+      "Sadanga"
+    ]
+  },
+  "Western Visayas": {
+    "Aklan": [
+      "Kalibo",
+      "Boracay",
+      "Numancia",
+      "Ibajay",
+      "Nabas",
+      "Batan",
+      "Altavas",
+      "Malay"
+    ],
+    "Antique": [
+      "San Jose",
+      "Sibalom",
+      "Hamtic",
+      "Tobias Fornier",
+      "Patnongon",
+      "Pandan",
+      "Sebaste",
+      "Culasi"
+    ],
+    "Capiz": [
+      "Roxas City",
+      "Panay",
+      "Pilar",
+      "Pontevedra",
+      "Ivisan",
+      "Maayon",
+      "Jamindan",
+      "Mambusao"
+    ],
+    "Guimaras": [
+      "Jordan",
+      "Buenavista",
+      "Nueva Valencia",
+      "San Lorenzo",
+      "Sibunag"
+    ],
+    "Iloilo": [
+      "Iloilo City",
+      "Passi",
+      "Oton",
+      "Miagao",
+      "Pavia",
+      "Pototan",
+      "Tigbauan",
+      "Janiuay",
+      "Santa Barbara",
+      "Dumangas"
+    ],
+    "Negros Occidental": [
+      "Bacolod",
+      "Kabankalan",
+      "San Carlos",
+      "Bago",
+      "Cadiz",
+      "Sagay",
+      "Silay",
+      "Talisay",
+      "Victorias",
+      "Himamaylan"
+    ]
+  },
+  "Central Visayas": {
+    "Bohol": [
+      "Tagbilaran",
+      "Ubay",
+      "Talibon",
+      "Tubigon",
+      "Panglao",
+      "Dauis",
+      "Carmen",
+      "Loon",
+      "Loboc",
+      "Maribojoc"
+    ],
+    "Cebu": [
+      "Cebu City",
+      "Mandaue",
+      "Lapu-Lapu",
+      "Talisay",
+      "Toledo",
+      "Danao",
+      "Naga",
+      "Carcar",
+      "Bogo",
+      "San Fernando"
+    ],
+    "Negros Oriental": [
+      "Dumaguete",
+      "Bais",
+      "Tanjay",
+      "Bayawan",
+      "Guihulngan",
+      "Canlaon",
+      "Sibulan",
+      "Valencia",
+      "Zamboanguita",
+      "Siaton"
+    ],
+    "Siquijor": [
+      "Siquijor",
+      "Larena",
+      "Enrique Villanueva",
+      "Lazi",
+      "Maria",
+      "San Juan"
+    ]
+  },
+  "Eastern Visayas": {
+    "Biliran": [
+      "Naval",
+      "Caibiran",
+      "Almeria",
+      "Kawayan",
+      "Maripipi",
+      "Biliran",
+      "Cabucgayan",
+      "Culaba"
+    ],
+    "Eastern Samar": [
+      "Borongan",
+      "Guiuan",
+      "Balangiga",
+      "Salcedo",
+      "Hernani",
+      "Mercedes",
+      "Maydolong",
+      "Balangkayan",
+      "Llorente",
+      "Oras"
+    ],
+    "Leyte": [
+      "Tacloban",
+      "Ormoc",
+      "Baybay",
+      "Palo",
+      "Tanauan",
+      "Dulag",
+      "Tolosa",
+      "Burauen",
+      "Abuyog",
+      "Alangalang"
+    ],
+    "Northern Samar": [
+      "Catarman",
+      "Calbayog",
+      "Allen",
+      "Laoang",
+      "San Jose",
+      "Lavezares",
+      "San Isidro",
+      "Victoria",
+      "Rosario",
+      "San Antonio"
+    ],
+    "Samar": [
+      "Catbalogan",
+      "Calbayog",
+      "Basey",
+      "Gandara",
+      "Paranas",
+      "Santa Margarita",
+      "Villareal",
+      "Pinabacdao",
+      "Tarangnan",
+      "Daram"
+    ],
+    "Southern Leyte": [
+      "Maasin",
+      "Sogod",
+      "Hinunangan",
+      "Silago",
+      "Bontoc",
+      "Liloan",
+      "Libagon",
+      "Tomas Oppus",
+      "Anahawan",
+      "San Juan"
+    ]
+  },
+  "Zamboanga Peninsula": {
+    "Zamboanga del Norte": [
+      "Dipolog",
+      "Dapitan",
+      "Sindangan",
+      "Rizal",
+      "Polanco",
+      "Sibuco",
+      "Kalawit",
+      "Gutalac",
+      "Liloy",
+      "Siayan"
+    ],
+    "Zamboanga del Sur": [
+      "Pagadian",
+      "Zamboanga City",
+      "Molave",
+      "Labangan",
+      "Aurora",
+      "Bayog",
+      "Dimataling",
+      "Josefina",
+      "Kumalarang",
+      "Mahayag"
+    ],
+    "Zamboanga Sibugay": [
+      "Ipil",
+      "Diplahan",
+      "Kabasalan",
+      "Titay",
+      "Buug",
+      "Imelda",
+      "Payao",
+      "Mabuhay",
+      "Roseller T. Lim",
+      "Talusan"
+    ]
+  },
+  "Northern Mindanao": {
+    "Bukidnon": [
+      "Malaybalay",
+      "Valencia",
+      "Manolo Fortich",
+      "Maramag",
+      "Don Carlos",
+      "Quezon",
+      "Sumilao",
+      "Talakag",
+      "Baungon",
+      "Impasug-ong"
+    ],
+    "Camiguin": ["Mambajao", "Sagay", "Catarman", "Guinsiliban", "Mahinog"],
+    "Lanao del Norte": [
+      "Iligan",
+      "Tubod",
+      "Kapatagan",
+      "Baloi",
+      "Baroy",
+      "Linamon",
+      "Maigo",
+      "Kolambugan",
+      "Lala",
+      "Munai"
+    ],
+    "Misamis Occidental": [
+      "Oroquieta",
+      "Ozamiz",
+      "Tangub",
+      "Plaridel",
+      "Jimenez",
+      "Aloran",
+      "Panaon",
+      "Concepcion",
+      "Baliangao",
+      "Calamba"
+    ],
+    "Misamis Oriental": [
+      "Cagayan de Oro",
+      "Gingoog",
+      "El Salvador",
+      "Tagoloan",
+      "Jasaan",
+      "Villanueva",
+      "Claveria",
+      "Balingasag",
+      "Lugait",
+      "Magsaysay"
+    ]
+  },
+  "Davao Region": {
+    "Davao de Oro": [
+      "Monkayo",
+      "Nabunturan",
+      "Maco",
+      "Mawab",
+      "Pantukan",
+      "Compostela",
+      "New Bataan",
+      "Laak"
+    ],
+    "Davao del Norte": [
+      "Tagum",
+      "Panabo",
+      "Samal",
+      "Kapalong",
+      "New Corella",
+      "Santo Tomas",
+      "Carmen",
+      "Asuncion"
+    ],
+    "Davao del Sur": [
+      "Digos",
+      "Davao City",
+      "Bansalan",
+      "Santa Cruz",
+      "Hagonoy",
+      "Padada",
+      "Kiblawan",
+      "Matanao",
+      "Sulop"
+    ],
+    "Davao Occidental": [
+      "Malita",
+      "Don Marcelino",
+      "Jose Abad Santos",
+      "Sarangani",
+      "Santa Maria"
+    ],
+    "Davao Oriental": [
+      "Mati",
+      "Baganga",
+      "Boston",
+      "Cateel",
+      "Governor Generoso",
+      "Lupon",
+      "San Isidro",
+      "Tarragona"
+    ]
+  },
+  "SOCCSKSARGEN": {
+    "Cotabato": [
+      "Kidapawan",
+      "Midsayap",
+      "Pikit",
+      "Kabacan",
+      "Makilala",
+      "Matalam",
+      "Tulunan",
+      "Magpet",
+      "Arakan"
+    ],
+    "Sarangani": ["Alabel", "Glan", "Maasim", "Malapatan", "Kiamba", "Maitum"],
+    "South Cotabato": [
+      "Koronadal",
+      "General Santos",
+      "Polomolok",
+      "Tupi",
+      "T'boli",
+      "Surallah",
+      "Banga",
+      "Tampakan"
+    ],
+    "Sultan Kudarat": [
+      "Isulan",
+      "Tacurong",
+      "Lebak",
+      "Kalamansig",
+      "Bagumbayan",
+      "Columbio",
+      "Esperanza",
+      "Lambayong",
+      "President Quirino",
+      "Senator Ninoy Aquino"
+    ]
+  },
+  "Caraga": {
+    "Agusan del Norte": [
+      "Butuan",
+      "Cabadbaran",
+      "Carmen",
+      "Nasipit",
+      "Buenavista",
+      "Jabonga",
+      "Kitcharao",
+      "Las Nieves",
+      "Magallanes",
+      "Remedios T. Romualdez"
+    ],
+    "Agusan del Sur": [
+      "Prosperidad",
+      "Bayugan",
+      "San Francisco",
+      "Trento",
+      "Esperanza",
+      "Bunawan",
+      "Rosario",
+      "Sibagat",
+      "Talacogon",
+      "Veruela"
+    ],
+    "Dinagat Islands": [
+      "San Jose",
+      "Basilisa",
+      "Cagdianao",
+      "Libjo",
+      "Loreto",
+      "Tubajon",
+      "Dinagat"
+    ],
+    "Surigao del Norte": [
+      "Surigao City",
+      "Siargao",
+      "Dapa",
+      "General Luna",
+      "Pilar",
+      "San Isidro",
+      "Socorro",
+      "Del Carmen",
+      "Santa Monica",
+      "Burgos"
+    ],
+    "Surigao del Sur": [
+      "Tandag",
+      "Bislig",
+      "Lianga",
+      "Barobo",
+      "Hinatuan",
+      "Lanuza",
+      "Madrid",
+      "Marihatag",
+      "San Agustin",
+      "Tago"
+    ]
+  },
+  "Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)": {
+    "Basilan": [
+      "Isabela City",
+      "Lamitan",
+      "Maluso",
+      "Sumisip",
+      "Tipo-Tipo",
+      "Tuburan",
+      "Akbar",
+      "Al-Barka",
+      "Hadji Mohammad Ajul",
+      "Ungkaya Pukan"
+    ],
+    "Lanao del Sur": [
+      "Marawi",
+      "Wao",
+      "Balindong",
+      "Malabang",
+      "Bayang",
+      "Binidayan",
+      "Buadiposo-Buntong",
+      "Butig",
+      "Calanogas",
+      "Ganassi"
+    ],
+    "Maguindanao del Norte": [
+      "Datu Odin Sinsuat",
+      "Barira",
+      "Matanog",
+      "Sultan Kudarat",
+      "Buldon",
+      "Kabuntalan",
+      "Northern Kabuntalan",
+      "Parang",
+      "Upi"
+    ],
+    "Maguindanao del Sur": [
+      "Buluan",
+      "Datu Paglas",
+      "Paglat",
+      "Mangudadatu",
+      "Datu Abdullah Sangki",
+      "Datu Anggal Midtimbang",
+      "Datu Hoffer Ampatuan",
+      "Datu Montawal",
+      "Datu Piang",
+      "Shariff Aguak"
+    ],
+    "Sulu": [
+      "Jolo",
+      "Parang",
+      "Pangutaran",
+      "Patikul",
+      "Indanan",
+      "Kalingalan Caluang",
+      "Luuk",
+      "Maimbung",
+      "Old Panamao",
+      "Panglima Estino"
+    ],
+    "Tawi-Tawi": [
+      "Bongao",
+      "Panglima Sugala",
+      "Sapa-Sapa",
+      "Sitangkai",
+      "Simunul",
+      "Sibutu",
+      "Tandubas",
+      "Turtle Islands",
+      "Languyan",
+      "Mapun"
+    ]
+  }
+}

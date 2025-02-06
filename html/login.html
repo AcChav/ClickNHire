@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="./assets/hiring.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Login</title>
+</head>
+
+<body class="bg-black flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-6">Login</h1>
+        <form id="loginForm">
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-bold mb-2">Email Address</label>
+                <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded" required>
+            </div>
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-bold mb-2">Password</label>
+                <input type="password" id="password" name="password" class="w-full p-3 border border-gray-300 rounded"
+                    required>
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="w-full bg-green-600 text-white p-3 rounded hover:bg-green-700">
+                    Login
+                </button>
+            </div>
+            <!-- Registration Link -->
+            <div class="text-center mt-4">
+                <a href="register.html" class="text-blue-500 hover:underline">Don't have an account? Register here</a>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Include the login script -->
+    <script type="module" src="./functions/login.js"></script>
+</body>
+
+</html>

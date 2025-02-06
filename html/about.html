@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon -->
+    <link rel="icon" href="./assets/hiring.png" type="image/x-icon">
+
+    <!-- styling -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>About Us - Bayloni Recruitment Services</title>
+</head>
+
+<body class="bg-black">
+    <!-- Header -->
+    <header class="bg-black py-9">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="logo flex-shrink-0">
+                <img src="./assets/hiring.png" alt="ClicknHire" class="w-14">
+            </div>
+            <nav class="flex-grow">
+                <ul class="flex justify-center space-x-12">
+                    <li><a href="index.html" class="text-gray-800 hover:text-green-400">HOME</a></li>
+                    <li><a href="jobs.html" class="text-gray-800 hover:text-green-400">BROWSE JOBS</a></li>
+                    <li><a href="faqs.html" class="text-gray-800 hover:text-green-400">FAQS</a></li>
+                    <li><a href="about.html" class="text-gray-800 hover:text-green-400">ABOUT US</a></li>
+                </ul>
+            </nav>
+            <div class="relative flex-shrink-0 text-white-800">
+                <button id="accountButton"
+                    class="py-2 text-gray-800 px-4 border-solid border-white rounded-full hover:text-green-400 flex items-center">
+                    GET STARTED <i class="fas fa-caret-down ml-2"></i>
+                </button>
+                <ul id="accountDropdown" class="absolute right-0 hidden shadow-lg mt-1 py-2 rounded w-full">
+                    <li><a href="login.html" class="block px-4 py-2 text-gray-800 hover:text-green-400">Log In</a></li>
+                    <li><a href="register.html" class="block px-4 py-2 text-gray-800 hover:text-green-400">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="bg-black text-white py-24">
+        <div class="container mx-auto px-4">
+            <!-- New Section for Image -->
+            <section class="mb-12">
+                <img src="./assets/banner.png" alt="Bayloni Recruitment Banner"
+                    class="w-full h-auto rounded-lg shadow-lg">
+            </section>
+
+            <div class="text-center max-w-2xl mx-auto">
+                <h1 class="text-5xl font-bold mb-6 title-blue">About Bayloni Recruitment Services</h1>
+                <p class="text-lg text-white mb-12">
+                    Bayloni Recruitment Services is dedicated to connecting top talent with leading companies. Our
+                    platform streamlines the recruitment process, making it easier for job seekers to find their ideal
+                    positions and for employers to discover the right candidates.
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center py-8">
+                <img src="./assets/teamwork.svg" alt="Our Team" class="w-full md:w-1/2 rounded-lg mb-8 md:mb-0">
+                <div class="md:ml-8 max-w-lg">
+                    <h2 class="text-2xl font-bold mb-4 title-blue">Our Mission</h2>
+                    <p class="text-lg text-white mb-8">
+                        Our mission is to bridge the gap between opportunity and talent. We leverage technology and deep
+                        industry expertise to ensure that every placement is a perfect match, benefiting both the
+                        candidate and the employer.
+                    </p>
+                    <a href="jobs.html" class="bg-green-700 text-white py-3 px-6 rounded hover:bg-green-600">Explore
+                        Opportunities</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-24">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-around space-y-8 md:space-y-0 text-white">
+                <div class="mr-6">
+                    <h3 class="text-lg font-bold mb-4 title-blue">Contact Us</h3>
+                    <p class="text-gray-800 flex items-start mb-2">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span><strong>Address:</strong> 1360 Felix Huertas St., Sta. Cruz, Manila, Philippines</span>
+                    </p>
+                    <p class="text-gray-800 flex items-start mb-2">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        <span><strong>Contact No:</strong> 0966 472 6874</span>
+                    </p>
+                    <p class="text-gray-800 flex items-start">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span><strong>Email Address:</strong> <a href="mailto:bayloni.applicants@gmail.com"
+                                class="text-gray-800 hover:text-green-400">bayloni.applicants@gmail.com</a></span>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 title-blue">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-800 hover:text-green-400">About Us</a></li>
+                        <li><a href="terms.html" class="text-gray-800 hover:text-green-400">Terms</a></li>
+                        <li><a href="privacy.html" class="text-gray-800 hover:text-green-400">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 title-blue">Browse</h3>
+                    <ul class="space-y-2">
+                        <li><a href="jobs.html" class="text-gray-800 hover:text-green-400">Search</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 title-blue">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="cust_support.html" class="text-gray-800 hover:text-green-400">Customer Support</a>
+                        </li>
+                        <li><a href="https://www.facebook.com/bayloni2015" target="_blank" rel="noopener"
+                                class="text-gray-800 hover:text-green-400">Visit our Facebook page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="bg-black text-center pt-8 text-white">
+        <p class="mb-4">&copy; 2024 Bayloni Recruitment Services. All rights reserved.</p>
+    </div>
+
+    <script src="./functions/dropdown.js"></script>
+</body>
+
+</html>

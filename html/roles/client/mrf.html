@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+
+    <title>Manpower Requisition Form</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex">
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">Client Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-4">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="mrf.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4"></path>
+                        </svg>
+                        MRF
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="client_view_mrf.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Submitted MRF
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="employees.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Manage Manpower
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="employee_performance.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4"></path>
+                        </svg>
+                        Employee Performance
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col ml-64">
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end sticky top-0">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li>
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                                </path>
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="p-6 flex-1">
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Manpower Requisition Form</h2>
+            </div>
+
+            <form id="mrf-form" class="space-y-6 bg-white p-6 shadow rounded-lg">
+                <!-- Company Information -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Company Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Company Name -->
+                        <div>
+                            <label for="company_name" class="block text-sm font-medium text-gray-700">Company
+                                Name</label>
+                            <input type="text" id="company_name" name="company_name"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                readonly>
+                        </div>
+                        <!-- Contact Person -->
+                        <div>
+                            <label for="contact_person" class="block text-sm font-medium text-gray-700">Contact
+                                Person</label>
+                            <input type="text" id="contact_person" name="contact_person"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                        </div>
+                        <!-- Contact Email -->
+                        <div>
+                            <label for="contact_email" class="block text-sm font-medium text-gray-700">Contact
+                                Email</label>
+                            <input type="email" id="contact_email" name="contact_email"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                        </div>
+                        <!-- Contact Phone -->
+                        <div>
+                            <label for="contact_phone" class="block text-sm font-medium text-gray-700">Contact
+                                Phone</label>
+                            <input type="tel" id="contact_phone" name="contact_phone"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Information -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Job Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Job Title -->
+                        <div>
+                            <label for="job_title" class="block text-sm font-medium text-gray-700">Job Title</label>
+                            <input type="text" id="job_title" name="job_title"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                        </div>
+                        <!-- Employment Type -->
+                        <div>
+                            <label for="employment_type" class="block text-sm font-medium text-gray-700">Employment
+                                Type</label>
+                            <select id="employment_type" name="employment_type"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                                <option value="">Select Employment Type</option>
+                                <option value="Full Time">Full Time</option>
+                                <option value="Part Time">Part Time</option>
+                                <option value="Freelance">Freelance</option>
+                                <option value="Contractual">Contractual</option>
+                            </select>
+                        </div>
+                        <!-- Region -->
+                        <div>
+                            <label for="region" class="block text-sm font-medium text-gray-700">Region</label>
+                            <select id="region" name="region"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                                <option value="">Select a region</option>
+                            </select>
+                        </div>
+                        <!-- Province -->
+                        <div id="province-container" style="display:none;">
+                            <label for="province" class="block text-sm font-medium text-gray-700">Province</label>
+                            <select id="province" name="province"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                                <option value="">Select a province</option>
+                            </select>
+                        </div>
+                        <!-- City/Municipality -->
+                        <div id="city-container" style="display:none;">
+                            <label for="city" class="block text-sm font-medium text-gray-700">City/Municipality</label>
+                            <select id="city" name="city"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                                <option value="">Select a city/municipality</option>
+                            </select>
+                        </div>
+                        <!-- Barangay/Street -->
+                        <div id="barangay-container" style="display:none;">
+                            <label for="barangay_street" class="block text-sm font-medium text-gray-700">Barangay/Street
+                                Address</label>
+                            <input type="text" id="barangay_street" name="barangay_street"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <!-- Salary Range -->
+                        <div>
+                            <label for="salary_range" class="block text-sm font-medium text-gray-700">Salary Range
+                                (PHP):</label>
+                            <select id="salary_range" name="salary_range" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="" disabled selected>Select a salary range</option>
+                                <option value="Below 10000">Below ₱10,000</option>
+                                <option value="10000-20000">₱10,000 - ₱20,000</option>
+                                <option value="20000-30000">₱20,000 - ₱30,000</option>
+                                <option value="30000-40000">₱30,000 - ₱40,000</option>
+                                <option value="40000-50000">₱40,000 - ₱50,000</option>
+                                <option value="Above 50000">Above ₱50,000</option>
+                            </select>
+                        </div>
+                        <!-- Sex -->
+                        <div>
+                            <label for="gender" class="block text-sm font-medium text-gray-700">Sex</label>
+                            <select id="gender" name="gender"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                                <option value="">Select sex</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Both gender">Male & Female</option>
+                            </select>
+                        </div>
+                        <!-- Number of Positions -->
+                        <div id="number-of-positions-container" style="display:none;">
+                            <label for="number_of_positions" class="block text-sm font-medium text-gray-700">Number of
+                                Positions</label>
+                            <input type="number" id="number_of_positions" name="number_of_positions"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                        </div>
+                        <!-- Specify Male and Female Positions -->
+                        <div id="gender-specific-container" class="hidden">
+                            <div>
+                                <label for="number_of_males" class="block text-sm font-medium text-gray-700">Number of
+                                    Males</label>
+                                <input type="number" id="number_of_males" name="number_of_males"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                            <div class="mt-4">
+                                <label for="number_of_females" class="block text-sm font-medium text-gray-700">Number of
+                                    Females</label>
+                                <input type="number" id="number_of_females" name="number_of_females"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            </div>
+                        </div>
+                        <!-- Required Experience -->
+                        <div>
+                            <label for="required_experience" class="block text-sm font-medium text-gray-700">Required
+                                Experience:</label>
+                            <select id="required_experience" name="required_experience" required
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value="" disabled selected>Select required experience</option>
+                                <option value="0">No experience (0 years)</option>
+                                <option value="1-2">1 - 2 years</option>
+                                <option value="3-5">3 - 5 years</option>
+                                <option value="6-10">6 - 10 years</option>
+                                <option value="11-15">11 - 15 years</option>
+                                <option value="16-20">16 - 20 years</option>
+                                <option value="20+">20+ years</option>
+                            </select>
+                        </div>
+                        <!-- Education -->
+                        <div>
+                            <label for="education_level" class="block text-sm font-medium text-gray-700">Education
+                                Level</label>
+                            <select id="education_level" name="education_level"
+                                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                required>
+                                <option value="">Select your education level</option>
+                                <option value="Less than high school">Less than high school</option>
+                                <option value="High school">High school</option>
+                                <option value="Graduated from high school">Graduated from high school</option>
+                                <option value="Vocational course">Vocational course</option>
+                                <option value="Completed vocational course">Completed vocational course</option>
+                                <option value="Associate's studies">Associate's studies</option>
+                                <option value="Completed associate's degree">Completed associate's degree</option>
+                                <option value="Bachelor's studies">Bachelor's studies</option>
+                                <option value="Bachelor's degree graduate">Bachelor's degree graduate</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Description -->
+                <div>
+                    <h3 class="text-lg font-semibold mt-4 mb-4">Job Description</h3>
+                    <div>
+                        <textarea id="job_description" name="job_description" rows="6"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required></textarea>
+                    </div>
+                </div>
+
+                <!-- Skills & Qualifications -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Skills & Qualifications</h3>
+                    <div>
+                        <label for="skills" class="block text-sm font-medium text-gray-700">Skills Required</label>
+                        <textarea id="skills" name="skills" rows="4"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required></textarea>
+                    </div>
+                    <div class="mt-4">
+                        <label for="qualifications"
+                            class="block text-sm font-medium text-gray-700">Qualifications</label>
+                        <textarea id="qualifications" name="qualifications" rows="4"
+                            class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            required></textarea>
+                    </div>
+                </div>
+
+                <!-- Submission Section -->
+                <div class="flex justify-end">
+                    <button type="submit"
+                        class="bg-blue-600 text-white px-6 py-2 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Submit Requisition
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Move script tags here for better loading performance -->
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <script type="module" src="../../functions/mrf_validations.js"></script>
+    <script type="module" src="../../functions/mrf.js"></script>
+    <script type="module" src="../../functions/logout.js"></script>
+
+</body>
+
+</html>

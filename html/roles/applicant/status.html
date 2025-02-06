@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+
+    <!-- Import Firebase initialization and authentication check scripts -->
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+
+    <title>My Applications</title>
+</head>
+
+<body class="bg-gray-100 h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">User Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-4">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="job_board.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Job Board
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="aplcnt_profile.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9.955 9.955 0 0112 15a9.955 9.955 0 016.879 2.804m-13.758 0A9.955 9.955 0 0112 21a9.955 9.955 0 016.879-2.804m-13.758 0a9.955 9.955 0 010-13.608A9.955 9.955 0 0112 3a9.955 9.955 0 016.879 2.804m-13.758 0a9.955 9.955 0 010 13.608m13.758-13.608A9.955 9.955 0 0112 3c-2.7 0-5.135 1.089-6.879 2.804m13.758 0a9.955 9.955 0 010 13.608">
+                        </svg>
+                        Profile
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="status.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4m4-4v4">
+                            </path>
+                        </svg>
+                        Application Status
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col ml-64">
+        <!-- Header -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end w-full sticky top-0">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li class="mb-2">
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main content area displaying user's application status -->
+        <main class="p-6 flex-1">
+            <h2 class="text-xl font-bold mb-4">Your Applications</h2>
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="hidden text-center text-gray-500 my-4">
+                <svg class="animate-spin h-5 w-5 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+                <p>Loading application status...</p>
+            </div>
+
+            <!-- Applications List -->
+            <div id="applicationsList" class="bg-white shadow rounded-lg p-4">
+                <!-- Applications will be dynamically loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for viewing detailed application status -->
+    <div id="statusModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg">
+            <h2 class="text-2xl font-bold mb-4">Application Status</h2>
+            <p><strong>Job Title:</strong> <span id="statusJobTitle"></span></p>
+            <p><strong>Company:</strong> <span id="statusCompany"></span></p>
+            <p><strong>Status:</strong> <span id="statusApplication"></span></p>
+            <p><strong>Interview Details:</strong> <span id="statusInterview"></span></p>
+            <p><strong>Interview Mode:</strong> <span id="statusInterviewMode"></span></p>
+            <p id="statusMeetingLink"><strong>Meeting Link:</strong></p>
+            <p id="statusDocuments"></p>
+            <p id="statusOnboarding"></p>
+            <p id="statusDeployment"></p>
+            <p><strong>Deployment Date:</strong> <span id="statusDeploymentDate"></span></p>
+            <p><strong>Deployment Location:</strong> <span id="statusDeploymentLocation"></span></p>
+            <p><strong>Manager Email:</strong> <span id="statusManagerEmail"></span></p>
+            <div>
+                <h4 class="font-semibold">Requirements:</h4>
+                <div id="statusRequirements" class="ml-4">
+                    <!-- Requirements list will be injected here -->
+                </div>
+            </div>
+            <button id="closeStatusModalButton"
+                class="mt-4 hover:bg-red-100 text-red-700 px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <!-- Include auth_check.js -->
+    <script type="module" src="../../functions/auth_check.js"></script>
+    <!-- Include the loading script -->
+    <script type="module" src="../../functions/loading.js"></script>
+    <!-- Include the welcome message script -->
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <!-- Include scripts for handling application status and logout -->
+    <script type="module" src="../../functions/status.js"></script>
+    <script type="module" src="../../functions/logout.js"></script>
+</body>
+
+</html>

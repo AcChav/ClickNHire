@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+
+    <!-- Import Firebase initialization and authentication check scripts -->
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+
+    <title>HR Dashboard</title>
+</head>
+
+<body class="bg-gray-100 h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">HR Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-2">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_dashboard.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4"></path>
+                        </svg>
+                        Job Postings
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="applications.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Manage Applications
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="verify_users.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9.955 9.955 0 0112 15a9.955 9.955 0 016.879 2.804m-13.758 0A9.955 9.955 0 0112 21a9.955 9.955 0 016.879-2.804m-13.758 0a9.955 9.955 0 010-13.608A9.955 9.955 0 0112 3a9.955 9.955 0 016.879 2.804m-13.758 0a9.955 9.955 0 010 13.608m13.758-13.608A9.955 9.955 0 0112 3c-2.7 0-5.135 1.089-6.879 2.804m13.758 0a9.955 9.955 0 010 13.608">
+                        </svg>
+                        Manage Users
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_calendar.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4m4-4v4">
+                            </path>
+                        </svg>
+                        Interview Schedule
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="rejected_mrfs.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Reports
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Client</span>
+                    <a href="mrf_panel.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        MRF
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="manage_clients.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        View Clients
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">EMPLOYEE</span>
+                    <a href="dm.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Employee Assessment
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="view_evaluations.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Employee Performance
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_requirements.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Employee Requirements
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 flex flex-col ml-64">
+        <!-- Header -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end w-full sticky top-0">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li class="mb-2">
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main content -->
+        <main class="p-6 flex-1">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold mb-4">View Clients</h2>
+            </div>
+
+            <!-- Statistics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-white p-4 shadow rounded-lg">
+                    <h3 class="text-lg font-semibold text-gray-700">Total Clients</h3>
+                    <p id="totalClientsCount" class="text-3xl font-bold text-blue-600">0</p>
+                </div>
+            </div>
+
+            <!-- Search and Filter Options -->
+            <div class="mb-4 flex items-center justify-between space-x-4">
+                <input type="text" id="searchInput" placeholder="Search by Client Name or Email"
+                    class="flex-1 p-2 border border-gray-300 rounded-lg">
+                <select id="locationFilter" class="p-2 border border-gray-300 rounded-lg">
+                    <option value="">Filter by Location</option>
+                </select>
+            </div>
+
+
+            <!-- Loading Indicator -->
+            <div id="loadingIndicator" class="hidden text-center text-gray-500 my-4">
+                <svg class="animate-spin h-5 w-5 text-gray-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+                <p>Loading clients. Please wait...</p>
+            </div>
+
+            <!-- Client List -->
+            <div id="clientList" class="bg-white shadow rounded-lg p-4">
+                <!-- Clients will be dynamically loaded here -->
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Import Firebase initialization -->
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <!-- Include the loading script -->
+    <script type="module" src="../../functions/loading.js"></script>
+    <!-- Include the welcome message script -->
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <!-- Include the manage_clients script -->
+    <script type="module" src="../../functions/manage_clients.js"></script>
+    <!-- Include the logout script -->
+    <script type="module" src="../../functions/logout.js"></script>
+
+</body>
+
+</html>

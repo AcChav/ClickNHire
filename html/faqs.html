@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon -->
+    <link rel="icon" href="./assets/hiring.png" type="image/x-icon">
+
+    <!-- styling -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>FAQ - Bayloni Recruitment Services</title>
+</head>
+
+<body class="bg-black">
+    <!-- Header -->
+    <header class="bg-black py-9">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="logo flex-shrink-0">
+                <img src="./assets/hiring.png" alt="ClicknHire" class="w-14">
+            </div>
+            <nav class="flex-grow">
+                <ul class="flex justify-center space-x-12">
+                    <li><a href="index.html" class="text-gray-800 hover:text-green-400">HOME</a></li>
+                    <li><a href="jobs.html" class="text-gray-800 hover:text-green-400">BROWSE JOBS</a></li>
+                    <li><a href="faqs.html" class="text-gray-800 hover:text-green-400">FAQS</a></li>
+                    <li><a href="about.html" class="text-gray-800 hover:text-green-400">ABOUT US</a></li>
+                </ul>
+            </nav>
+            <div class="relative flex-shrink-0 text-white-800">
+                <button id="accountButton"
+                    class="py-2 text-gray-800 px-4 border-solid border-white rounded-full hover:text-green-400 flex items-center">
+                    GET STARTED <i class="fas fa-caret-down ml-2"></i>
+                </button>
+                <ul id="accountDropdown" class="absolute right-0 hidden shadow-lg mt-1 py-2 rounded w-full">
+                    <li><a href="login.html" class="block px-4 py-2 text-gray-800 hover:text-green-400">Log In</a></li>
+                    <li><a href="register.html" class="block px-4 py-2 text-gray-800 hover:text-green-400">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="bg-black py-24">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold mb-8 text-center text-white">Frequently Asked Questions (FAQs)</h1>
+
+            <!-- Responsive Grid for FAQs -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Job Applicant FAQ -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 text-white">Job Applicant</h2>
+                    <div class="space-y-4">
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I apply for a job?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    To apply for a job, you need to create a profile, fill in your details, and upload
+                                    your
+                                    resume. Once done, you can browse job postings and apply directly through the
+                                    platform.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                Can I edit my profile after applying for a job?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Yes, you can edit your profile at any time. However, make sure to keep your
+                                    information
+                                    accurate and up to date.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                What file formats can I upload for my resume?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    You can upload your resume in PDF, DOC, or DOCX format. Ensure the file is less than
+                                    5MB.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I know if my application was successful?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    You will receive a confirmation email once your application is successfully
+                                    submitted. You can also track your application status in your profile.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                Can I apply for multiple jobs at once?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Yes, you can apply for multiple jobs as long as your qualifications meet the job
+                                    requirements.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HR FAQ -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 text-white">HR</h2>
+                    <div class="space-y-4">
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I manage job postings?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    As an HR user, you can manage job postings through the platform’s admin dashboard.
+                                    You
+                                    can create, edit, and remove job postings, as well as manage applications.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How can I schedule interviews?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Interviews can be scheduled directly through the platform. You can select
+                                    candidates,
+                                    set interview dates, and notify applicants of their interview schedules.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I verify user accounts?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    User accounts can be verified through the verification tools in the admin dashboard.
+                                    You can check the user’s submitted documents and approve or deny their registration.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                Can I manage interview feedback on the platform?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Yes, interview feedback can be logged and managed on the platform. This feedback
+                                    helps in finalizing candidate selection.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I update job descriptions?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Job descriptions can be updated directly from the job posting management section of
+                                    the admin dashboard.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Client/Partner FAQ -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 text-white">Client/Partner</h2>
+                    <div class="space-y-4">
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I request for manpower?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    You can request manpower by submitting a Manpower Requisition Form through the
+                                    platform.
+                                    The HR department will review and process your request.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                Can I track the status of my requisition?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Yes, you can track the status of your requisition through your dashboard. Updates
+                                    will
+                                    be provided by the HR team as your request is processed.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I update my company’s information?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    You can update your company’s information, such as contact details and address, in
+                                    your partner profile settings.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I view submitted resumes for a job request?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Submitted resumes can be viewed in your dashboard under the job requisition details.
+                                    You will be able to see all candidates who applied.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                Can I communicate directly with HR regarding my requisitions?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Yes, you can communicate directly with HR through the messaging feature in your
+                                    dashboard.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- District Manager FAQ -->
+                <div>
+                    <h2 class="text-2xl font-bold mb-4 text-white">District Manager</h2>
+                    <div class="space-y-4">
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I evaluate deployed employees?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    As a District Manager, you can evaluate deployed employees using the evaluation
+                                    tools
+                                    available on the platform. You can provide feedback and assess performance based on
+                                    set
+                                    criteria.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                Can I generate reports on employee performance?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Yes, you can generate detailed reports on employee performance through the platform.
+                                    These reports can be used for decision-making and improving operational efficiency.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I track employee attendance?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Employee attendance can be tracked through the platform’s attendance monitoring
+                                    tools. You can view attendance logs and track trends.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                Can I provide feedback on employee performance?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Yes, the platform allows you to provide detailed feedback on employee performance,
+                                    which can be shared with HR for further actions.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-white border rounded-lg shadow-lg">
+                            <button
+                                class="w-full text-left px-4 py-2 font-semibold hover:bg-green-50 focus:outline-none focus:ring focus:ring-green-200">
+                                How do I handle employee grievances?
+                            </button>
+                            <div class="px-4 py-2 hidden">
+                                <p class="text-gray-700">
+                                    Employee grievances can be submitted and managed through the platform’s grievance
+                                    management system. You can review and resolve issues as needed.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black py-24 text-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-around space-y-8 md:space-y-0 text-white">
+                <div class="mr-6">
+                    <h3 class="text-lg font-bold mb-4 title-blue">Contact Us</h3>
+                    <p class="text-gray-800 flex items-start mb-2">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span><strong>Address:</strong> 1360 Felix Huertas St., Sta. Cruz, Manila, Philippines</span>
+                    </p>
+                    <p class="text-gray-800 flex items-start mb-2">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        <span><strong>Contact No:</strong> 0966 472 6874</span>
+                    </p>
+                    <p class="text-gray-800 flex items-start">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span><strong>Email Address:</strong> <a href="mailto:bayloni.applicants@gmail.com"
+                                class="text-gray-800 hover:text-green-400">bayloni.applicants@gmail.com</a></span>
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 title-blue">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-800 hover:text-green-400">About Us</a></li>
+                        <li><a href="terms.html" class="text-gray-800 hover:text-green-400">Terms</a></li>
+                        <li><a href="privacy.html" class="text-gray-800 hover:text-green-400">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 title-blue">Browse</h3>
+                    <ul class="space-y-2">
+                        <li><a href="jobs.html" class="text-gray-800 hover:text-green-400">Search</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4 title-blue">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="cust_support.html" class="text-gray-800 hover:text-green-400">Customer Support</a>
+                        </li>
+                        <li><a href="https://www.facebook.com/bayloni2015" target="_blank" rel="noopener"
+                                class="text-gray-800 hover:text-green-400">Visit our Facebook page</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="bg-black text-center pt-8 text-white">
+        <p class="mb-4">&copy; 2024 Bayloni Recruitment Services. All rights reserved.</p>
+    </div>
+
+    <script src="./functions/faqs.js"></script>
+</body>
+
+</html>

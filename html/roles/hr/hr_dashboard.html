@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+    <title>HR Dashboard</title>
+</head>
+
+<body class="bg-gray-100 h-screen flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">HR Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-2">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_dashboard.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4"></path>
+                        </svg>
+                        Job Postings
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="applications.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Manage Applications
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="verify_users.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9.955 9.955 0 0112 15a9.955 9.955 0 016.879 2.804m-13.758 0A9.955 9.955 0 0112 21a9.955 9.955 0 016.879-2.804m-13.758 0a9.955 9.955 0 010-13.608A9.955 9.955 0 0112 3a9.955 9.955 0 016.879 2.804m-13.758 0a9.955 9.955 0 010 13.608m13.758-13.608A9.955 9.955 0 0112 3c-2.7 0-5.135 1.089-6.879 2.804m13.758 0a9.955 9.955 0 010 13.608">
+                        </svg>
+                        Manage Users
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_calendar.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4m4-4v4">
+                            </path>
+                        </svg>
+                        Interview Schedule
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="rejected_mrfs.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Reports
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Client</span>
+                    <a href="mrf_panel.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        MRF
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="manage_clients.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        View Clients
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">EMPLOYEE</span>
+                    <a href="dm.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Employee Assessment
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="view_evaluations.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Employee Performance
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_requirements.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Employee Requirements
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="flex-1 flex flex-col ml-64">
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end w-full sticky top-0">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li class="mb-2">
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                                </path>
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="p-6 flex-1">
+            <div class="mb-6 flex items-center justify-between">
+                <h2 class="text-xl font-bold">Manage Job Postings</h2>
+                <button id="createJobButton" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Create
+                    New Job</button>
+            </div>
+
+            <div class="mb-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" id="searchInput" placeholder="Search by Job Title or Company"
+                    class="p-2 border border-gray-300 rounded-lg">
+                <select id="employmentTypeFilter" class="p-2 border border-gray-300 rounded-lg">
+                    <option value="">Filter by Employment Type</option>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Contractual">Contractual</option>
+                </select>
+                <select id="locationFilter" class="p-2 border border-gray-300 rounded-lg">
+                    <option value="">Filter by Location</option>
+                </select>
+            </div>
+
+            <div id="loadingIndicator" class="hidden text-center text-gray-500 my-4">
+                <!-- Loading Indicator Content -->
+            </div>
+
+            <div id="jobList" class="bg-white shadow rounded-lg p-4">
+                <!-- Job postings will be dynamically loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for creating or editing job postings -->
+    <div id="jobModal"
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center overflow-auto hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg max-h-full overflow-y-auto">
+            <h2 id="modalTitle" class="text-xl font-bold mb-4">Create Job Post</h2>
+            <form id="jobForm">
+                <input type="hidden" id="jobId" name="jobId">
+
+                <h2 class="my-4 font-bold">Basic Information</h2>
+
+                <div class="mb-4">
+                    <label for="company" class="block text-sm font-bold mb-2">Company</label>
+                    <input type="text" id="company" name="company" class="w-full p-3 border border-gray-300 rounded"
+                        required>
+                </div>
+                <div class="mb-4">
+                    <label for="contactPerson" class="block text-sm font-bold mb-2">Contact Person</label>
+                    <input type="text" id="contactPerson" name="contactPerson"
+                        class="w-full p-3 border border-gray-300 rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="contactEmail" class="block text-sm font-bold mb-2">Contact Email</label>
+                    <input type="email" id="contactEmail" name="contactEmail"
+                        class="w-full p-3 border border-gray-300 rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="contactPhone" class="block text-sm font-bold mb-2">Contact Phone</label>
+                    <input type="text" id="contactPhone" name="contactPhone"
+                        class="w-full p-3 border border-gray-300 rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="jobTitle" class="block text-sm font-bold mb-2">Job Title</label>
+                    <input type="text" id="jobTitle" name="jobTitle" class="w-full p-3 border border-gray-300 rounded"
+                        required>
+                </div>
+                <div class="mb-4">
+                    <label for="employmentType" class="block text-sm font-bold mb-2">Employment Type</label>
+                    <select id="employmentType" name="employmentType" class="w-full p-3 border border-gray-300 rounded"
+                        required>
+                        <option value="">Select Employment Type</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Contractual">Contractual</option>
+                    </select>
+                </div>
+
+                <h2 class="my-4 font-bold">Location</h2>
+
+                <div class="mb-4">
+                    <label for="jobRegion" class="block text-sm font-bold mb-2">Region</label>
+                    <select id="jobRegion" name="jobRegion" class="w-full p-3 border border-gray-300 rounded" required>
+                        <option value="">Select your region</option>
+                        <!-- Region options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="jobProvince" class="block text-sm font-bold mb-2">Province</label>
+                    <select id="jobProvince" name="jobProvince" class="w-full p-3 border border-gray-300 rounded"
+                        required>
+                        <option value="">Select your province</option>
+                        <!-- Province options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="jobCity" class="block text-sm font-bold mb-2">City</label>
+                    <select id="jobCity" name="jobCity" class="w-full p-3 border border-gray-300 rounded" required>
+                        <option value="">Select your city</option>
+                        <!-- City options will be populated dynamically -->
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="jobBarangayStreet" class="block text-sm font-bold mb-2">Barangay/Street</label>
+                    <input type="text" id="jobBarangayStreet" name="jobBarangayStreet"
+                        class="w-full p-3 border border-gray-300 rounded">
+                </div>
+
+                <div class="mb-4">
+                    <label for="salaryRange" class="block text-sm font-bold mb-2">Salary Range (PHP):</label>
+                    <select id="salaryRange" name="salaryRange" class="w-full p-3 border border-gray-300 rounded"
+                        required>
+                        <option value="" disabled selected>Select a salary range</option>
+                        <option value="Below 10000">Below ₱10,000</option>
+                        <option value="10000-20000">₱10,000 - ₱20,000</option>
+                        <option value="20000-30000">₱20,000 - ₱30,000</option>
+                        <option value="30000-40000">₱30,000 - ₱40,000</option>
+                        <option value="40000-50000">₱40,000 - ₱50,000</option>
+                        <option value="Above 50000">Above ₱50,000</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="jobGender" class="block text-sm font-bold mb-2">Sex</label>
+                    <select id="jobGender" name="jobGender" class="w-full p-3 border border-gray-300 rounded" required>
+                        <option value="">Select Sex</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Both gender">Male & Female</option>
+                    </select>
+                </div>
+
+                <div id="numberOfPositionsContainer" class="mb-4">
+                    <label for="numberOfPositions" class="block text-sm font-bold mb-2">Number of Positions</label>
+                    <input type="number" id="numberOfPositions" name="numberOfPositions" min="1"
+                        class="w-full p-3 border border-gray-300 rounded" placeholder="Enter number of positions">
+                </div>
+
+                <div id="numberOfMalesContainer" class="mb-4 hidden">
+                    <label for="numberOfMales" class="block text-sm font-bold mb-2">Number of Males</label>
+                    <input type="number" id="numberOfMales" name="numberOfMales" min="1"
+                        class="w-full p-3 border border-gray-300 rounded" placeholder="Enter number of males">
+                </div>
+
+                <div id="numberOfFemalesContainer" class="mb-4 hidden">
+                    <label for="numberOfFemales" class="block text-sm font-bold mb-2">Number of Females</label>
+                    <input type="number" id="numberOfFemales" name="numberOfFemales" min="1"
+                        class="w-full p-3 border border-gray-300 rounded" placeholder="Enter number of females">
+                </div>
+
+                <!-- Required Experience -->
+                <div class="mb-4">
+                    <label for="requiredExperience" class="block text-sm font-bold mb-2">Required Experience</label>
+                    <select id="requiredExperience" name="requiredExperience" required
+                        class="w-full p-3 border border-gray-300 rounded shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                        <option value="" disabled selected>Select required experience</option>
+                        <option value="0">No experience (0 years)</option>
+                        <option value="1-2">1 - 2 years</option>
+                        <option value="3-5">3 - 5 years</option>
+                        <option value="6-10">6 - 10 years</option>
+                        <option value="11-15">11 - 15 years</option>
+                        <option value="16-20">16 - 20 years</option>
+                        <option value="20+">20+ years</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="educationLevel" class="block text-sm font-bold mb-2">Education Level</label>
+                    <select id="educationLevel" name="educationLevel" class="w-full p-3 border border-gray-300 rounded"
+                        required>
+                        <option value="">Select Education Level</option>
+                        <option value="Less than high school">Less than high school</option>
+                        <option value="High school">High school</option>
+                        <option value="Graduated from high school">Graduated from high school</option>
+                        <option value="Vocational course">Vocational course</option>
+                        <option value="Completed vocational course">Completed vocational course</option>
+                        <option value="Associate's studies">Associate's studies</option>
+                        <option value="Completed associate's degree">Completed associate's degree</option>
+                        <option value="Bachelor's studies">Bachelor's studies</option>
+                        <option value="Bachelor's degree graduate">Bachelor's degree graduate</option>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="jobDescription" class="block text-sm font-bold mb-2">Job Description</label>
+                    <textarea id="jobDescription" name="jobDescription"
+                        class="w-full p-3 border border-gray-300 rounded" required></textarea>
+                </div>
+
+                <h2 class="my-4 font-bold">Qualifications</h2>
+
+                <div class="mb-4">
+                    <label for="jobSkills" class="block text-sm font-bold mb-2">Skills</label>
+                    <input type="text" id="jobSkills" name="jobSkills" class="w-full p-3 border border-gray-300 rounded"
+                        placeholder="Enter required skills" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="jobQualifications" class="block text-sm font-bold mb-2">Qualifications</label>
+                    <textarea id="jobQualifications" name="jobQualifications"
+                        class="w-full p-3 border border-gray-300 rounded" placeholder="Enter qualifications"
+                        required></textarea>
+                </div>
+
+                <div class="flex justify-between space-x-4">
+                    <button type="button" id="cancelButton"
+                        class="text-red-700 py-2 px-4 rounded hover:bg-red-100">Cancel</button>
+                    <button type="submit" id="saveButton"
+                        class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Post Job</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for viewing job details -->
+    <div id="previewModal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md max-h-full overflow-y-auto my-5">
+            <h2 class="text-2xl font-bold mb-4">Job Details</h2>
+            <p class="mb-4"><strong>Company Name:</strong> <span id="viewJobCompany"></span></p>
+            <p class="mb-4"><strong>Contact Person:</strong> <span id="viewJobContactPerson"></span></p>
+            <p class="mb-4"><strong>Contact Email:</strong> <span id="viewJobContactEmail"></span></p>
+            <p class="mb-4"><strong>Contact Phone:</strong> <span id="viewJobContactPhone"></span></p>
+            <p class="mb-4"><strong>Job Title:</strong> <span id="viewJobTitle"></span></p>
+            <p class="mb-4"><strong>Employment Type:</strong> <span id="viewJobEmploymentType"></span></p>
+            <p class="mb-4"><strong>Location:</strong> <span id="viewJobLocation"></span></p>
+            <p class="mb-4"><strong>Salary Range:</strong> <span id="viewJobSalaryRange"></span></p>
+            <p class="mb-4"><strong>Gender:</strong> <span id="viewJobGender"></span></p>
+            <p class="mb-4"><strong>Number of Positions:</strong> <span id="viewJobNumberOfPositions"></span></p>
+            <p class="mb-4"><strong>Required Experience:</strong> <span id="viewJobRequiredExperience"></span> years</p>
+            <p class="mb-4"><strong>Education:</strong> <span id="viewJobEducation"></span></p>
+            <p class="mb-4"><strong>Job Description:</strong> <span id="viewJobDescription"></span></p>
+            <p class="mb-4"><strong>Skills:</strong> <span id="viewJobSkills"></span></p>
+            <p class="mb-4"><strong>Qualifications:</strong> <span id="viewJobQualifications"></span></p>
+            <p class="mb-4"><strong>Submitted At:</strong> <span id="viewJobSubmittedAt"></span></p>
+            <button id="closePreviewButton" class="mt-4 text-red-700 hover:bg-red-100 px-4 py-2 rounded">Close</button>
+        </div>
+    </div>
+
+    <!-- Deletion Confirmation Modal -->
+    <div id="deleteConfirmationModal"
+        class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+            <h2 class="text-2xl font-bold mb-4">Are you sure you want to delete this job post?</h2>
+            <div class="flex justify-around mt-4">
+                <button id="confirmDeleteButton"
+                    class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">Delete</button>
+                <button id="cancelDeleteButton" class="text-red-700 py-2 px-4 rounded hover:bg-red-100">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md">
+            <h2 class="text-xl font-semibold mb-4">Confirmation</h2>
+            <p class="message text-gray-700 mb-4"></p>
+            <button id="closeConfirmationButton" class="px-4 py-2 text-red-700 rounded hover:bg-red-100">Close</button>
+        </div>
+    </div>
+
+    <script type="module" src="../../functions/loading.js"></script>
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <script type="module" src="../../functions/hr_dashboard.js"></script>
+    <script type="module" src="../../functions/logout.js"></script>
+
+</body>
+
+</html>

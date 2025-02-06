@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+    <!-- Import Firebase initialization and authentication check scripts -->
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+    <title>View Evaluations</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">HR Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-2">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_dashboard.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4"></path>
+                        </svg>
+                        Job Postings
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="applications.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Manage Applications
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="verify_users.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9.955 9.955 0 0112 15a9.955 9.955 0 016.879 2.804m-13.758 0A9.955 9.955 0 0112 21a9.955 9.955 0 016.879-2.804m-13.758 0a9.955 9.955 0 010-13.608A9.955 9.955 0 0112 3a9.955 9.955 0 016.879 2.804m-13.758 0a9.955 9.955 0 010 13.608m13.758-13.608A9.955 9.955 0 0112 3c-2.7 0-5.135 1.089-6.879 2.804m13.758 0a9.955 9.955 0 010 13.608">
+                        </svg>
+                        Manage Users
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_calendar.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4m4-4v4">
+                            </path>
+                        </svg>
+                        Interview Schedule
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="rejected_mrfs.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Reports
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Client</span>
+                    <a href="mrf_panel.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        MRF
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="manage_clients.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        View Clients
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">EMPLOYEE</span>
+                    <a href="dm.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Employee Assessment
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="view_evaluations.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Employee Performance
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_requirements.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Employee Requirements
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col ml-64">
+        <!-- Header -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end sticky top-0 z-10">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li>
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                                </path>
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Evaluation Table -->
+        <main class="p-8">
+            <h2 class="text-xl font-bold mb-4">Employee Performance Evaluation</h2>
+
+            <!-- Search Bar -->
+            <div class="mb-4">
+                <input type="text" id="search-input" placeholder="Search by name, company, or manager"
+                    class="border px-2 py-1" />
+                <button id="search-button" class="bg-blue-500 text-white px-4 py-1 rounded">Search</button>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <table class="min-w-full table-auto">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-2">Employee Name</th>
+                            <th class="px-4 py-2">Date Submitted</th>
+                            <th class="px-4 py-2">Score</th>
+                            <th class="px-4 py-2">Actions</th>
+                            <th class="px-4 py-2">Status</th>
+                            <th class="px-4 py-2">View Details</th>
+                        </tr>
+                    </thead>
+                    <tbody id="evaluation-list">
+                        <!-- Evaluation rows will be injected here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="evaluationModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md relative">
+            <!-- Exit Button -->
+            <button id="closeModalButton" class="absolute top-2 right-2">
+                <img src="../../assets/exit.svg" alt="Close" class="w-6 h-6 hover:opacity-75">
+            </button>
+
+            <h2 class="text-xl font-semibold mb-4">Evaluate</h2>
+            <p><strong>Employee Name:</strong> <span id="modalEmployeeName"></span></p>
+            <p><strong>Company:</strong> <span id="modalCompany"></span></p>
+            <p><strong>Grand Average:</strong> <span id="modalGrandAverage"></span></p>
+            <p><strong>Interpreted Result:</strong> <span id="modalGrandInterpretation"></span></p>
+            <p><strong>Comments:</strong></p>
+            <p id="modalComments" class="mb-4"></p>
+
+            <label for="modalActionDropdown" class="block text-sm font-medium text-gray-700">Select Action:</label>
+            <select id="modalActionDropdown"
+                class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"></select>
+
+            <!-- Proceed Button -->
+            <div class="flex justify-end mt-4">
+                <button id="proceedButton" class="bg-blue-500 text-white px-4 py-2 rounded">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="redeploymentModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md relative">
+            <button id="closeRedeploymentModalButton" class="absolute top-2 right-2">
+                <img src="../../assets/exit.svg" alt="Close" class="w-6 h-6 hover:opacity-75">
+            </button>
+
+            <h2 class="text-xl font-semibold mb-4">Redeployment Details</h2>
+            <form id="redeploymentForm">
+                <label for="redeploymentDate" class="block text-sm font-medium text-gray-700">Redeployment Date:</label>
+                <input type="date" id="redeploymentDate" name="redeploymentDate"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    required>
+
+                <label for="redeploymentLocation" class="block text-sm font-medium text-gray-700">Redeployment
+                    Location:</label>
+                <input type="text" id="redeploymentLocation" name="redeploymentLocation" placeholder="Enter location"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    required>
+
+                <!-- New Field: Job Name -->
+                <label for="redeploymentJobName" class="block text-sm font-medium text-gray-700">Job Name:</label>
+                <select id="redeploymentJobName" name="redeploymentJobName"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4">
+                    <option value="Same Job">Same Job</option>
+                    <option value="Others">Others</option>
+                </select>
+
+                <!-- Conditional Input for Other Job Name -->
+                <input type="text" id="otherJobName" name="otherJobName" placeholder="Specify Job Name"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4 hidden">
+
+                <label for="redeploymentJustification" class="block text-sm font-medium text-gray-700">Reason for
+                    Redeployment:</label>
+                <textarea id="redeploymentJustification" name="redeploymentJustification"
+                    placeholder="Enter reason for redeployment"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    required></textarea>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="terminationModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md relative">
+            <button id="closeTerminationModalButton" class="absolute top-2 right-2">
+                <img src="../../assets/exit.svg" alt="Close" class="w-6 h-6 hover:opacity-75">
+            </button>
+
+            <h2 class="text-xl font-semibold mb-4">Termination Details</h2>
+            <form id="terminationForm">
+                <p><strong>Employee Name:</strong> <span id="terminationEmployeeName"></span></p><br>
+
+                <label for="terminationDate" class="block text-sm font-medium text-gray-700">Termination Date:</label>
+                <input type="date" id="terminationDate" name="terminationDate"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    required>
+
+                <label for="terminationReason" class="block text-sm font-medium text-gray-700">Reason for
+                    Termination:</label>
+                <textarea id="terminationReason" name="terminationReason"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    placeholder="Enter reason for termination" required></textarea>
+
+                <label for="finalComments" class="block text-sm font-medium text-gray-700">Final Comments:</label>
+                <textarea id="finalComments" name="finalComments"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    placeholder="Additional comments (optional)"></textarea>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Terminate</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="regularizationModal"
+        class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 w-full max-w-md relative">
+            <button id="closeRegularizationModalButton" class="absolute top-2 right-2">
+                <img src="../../assets/exit.svg" alt="Close" class="w-6 h-6 hover:opacity-75">
+            </button>
+
+            <h2 class="text-xl font-semibold mb-4">Regularization Details</h2>
+            <form id="regularizationForm">
+                <p><strong>Employee Name:</strong> <span id="regularizationEmployeeName"></span></p>
+
+                <label for="regularizationDate" class="block text-sm font-medium text-gray-700">Regularization
+                    Date:</label>
+                <input type="date" id="regularizationDate" name="regularizationDate"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    required>
+
+                <label for="regularizationComments" class="block text-sm font-medium text-gray-700">Comments:</label>
+                <textarea id="regularizationComments" name="regularizationComments"
+                    class="block w-full mt-1 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm mb-4"
+                    placeholder="Enter comments (optional)"></textarea>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Regularize</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Include JavaScript files -->
+    <script type="module" src="../../functions/view_evaluations.js"></script>
+    <!-- Include the welcome message script -->
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <!-- Include the logout script -->
+    <script type="module" src="../../functions/logout.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+</body>
+
+</html>

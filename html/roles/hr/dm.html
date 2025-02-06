@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" as="style">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="../../assets/hiring.png" type="image/x-icon">
+    <!-- Import Firebase initialization and authentication check scripts -->
+    <script type="module" src="../../db/firebase_init.js"></script>
+    <script type="module" src="../../functions/auth_check.js"></script>
+
+    <title>Employee Performance Evaluation Form</title>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 text-white fixed inset-y-0 flex flex-col">
+        <div class="p-4 flex items-center">
+            <svg class="w-8 h-8 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 4v4m0 4v4m0 4v2m0-14l-4 4m0 0l4-4m0 4l4-4m0 0l-4 4m-2 10h6"></path>
+            </svg>
+            <h1 class="text-xl font-bold">HR Dashboard</h1>
+        </div>
+        <nav class="p-4 my-6 flex-1 overflow-auto">
+            <ul>
+                <li class="mb-2">
+                    <h2 id="profileHeader" class="text-lg font-bold mb-4">...</h2>
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Menu</span>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_dashboard.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4"></path>
+                        </svg>
+                        Job Postings
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="applications.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Manage Applications
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="verify_users.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5.121 17.804A9.955 9.955 0 0112 15a9.955 9.955 0 016.879 2.804m-13.758 0A9.955 9.955 0 0112 21a9.955 9.955 0 016.879-2.804m-13.758 0a9.955 9.955 0 010-13.608A9.955 9.955 0 0112 3a9.955 9.955 0 016.879 2.804m-13.758 0a9.955 9.955 0 010 13.608m13.758-13.608A9.955 9.955 0 0112 3c-2.7 0-5.135 1.089-6.879 2.804m13.758 0a9.955 9.955 0 010 13.608">
+                        </svg>
+                        Manage Users
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_calendar.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7m-9-5v18m-4-4h8m-4 0V4m4 10v4m4-4v4m4-4v4m4-4v4m4-4v4m4-4v4">
+                            </path>
+                        </svg>
+                        Interview Schedule
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="rejected_mrfs.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Reports
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">Client</span>
+                    <a href="mrf_panel.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        MRF
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="manage_clients.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        View Clients
+                    </a>
+                </li>
+                <li class="mb-2 mt-6">
+                    <span class="text-gray-400 uppercase tracking-wider text-sm">EMPLOYEE</span>
+                    <a href="dm.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                        Employee Assessment
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="view_evaluations.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m2 0a2 2 0 112 2m0-6a2 2 0 11-2 2m-8 0a2 2 0 11-2 2m0-6a2 2 0 11-2 2"></path>
+                        </svg>
+                        Employee Performance
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <a href="hr_requirements.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 6h13M8 12h9m-9 6h9M3 6h.01M3 12h.01M3 18h.01"></path>
+                        </svg>
+                        Employee Requirements
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col ml-64">
+        <!-- Header -->
+        <header class="bg-gray-800 text-white p-4 flex items-center justify-end sticky top-0 z-10">
+            <nav>
+                <ul class="flex space-x-4">
+                    <li>
+                        <a href="logout.html" class="flex items-center p-2 hover:bg-gray-700 rounded">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1">
+                                </path>
+                            </svg>
+                            Logout
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Evaluation Form -->
+        <main class="p-8">
+            <h2 class="text-xl font-bold mb-4">Employee Performance Evaluation</h2>
+
+            <form action="#" method="POST" class="bg-white p-6 rounded-lg shadow-md" id="evaluation-form">
+                <h3 class="text-lg font-bold mb-4">Employee Information</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <div class="form-group">
+                        <label for="employeeName" class="block text-sm font-medium text-gray-700">Employee Name</label>
+                        <select id="employeeName" name="employeeName"
+                            class="mt-1 p-2 w-full border border-gray-300 rounded-md" aria-label="Employee Name"
+                            required>
+                            <option value="" disabled selected>Select an employee</option>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="employeeId" class="block text-sm font-medium text-gray-700">Employee ID</label>
+                        <input type="text" id="employeeId" name="employeeId"
+                            class="mt-1 p-2 w-full border border-gray-300 rounded-md" aria-label="Employee ID" readonly
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company" class="block text-sm font-medium text-gray-700">Company</label>
+                        <input type="text" id="company" name="company"
+                            class="mt-1 p-2 w-full border border-gray-300 rounded-md" aria-label="Company" readonly
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="managerName" class="block text-sm font-medium text-gray-700">Manager Name</label>
+                        <input type="text" id="managerName" name="managerName"
+                            class="mt-1 p-2 w-full border border-gray-300 rounded-md" aria-label="Manager Name" readonly
+                            required>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold mb-4">Performance Evaluation</h3>
+
+                <div class="space-y-4" id="evaluation-sections">
+                    <!-- Sections will be injected by JavaScript -->
+                </div>
+
+                <!-- Comments Section -->
+                <div class="form-group mt-6">
+                    <label for="comments" class="block text-sm font-medium text-gray-700">Additional Comments</label>
+                    <textarea id="comments" name="comments" rows="4"
+                        class="mt-1 p-2 w-full border border-gray-300 rounded-md"
+                        aria-label="Additional Comments"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group mt-6">
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Submit
+                        Evaluation</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Include the welcome message script -->
+    <script type="module" src="../../functions/welcome_message.js"></script>
+    <!-- Include the logout script -->
+    <script type="module" src="../../functions/logout.js"></script>
+    <script type="module" src="../../functions/dm_evaluation.js"></script>
+    <script type="module" src="../../functions/dm_dropdown.js"></script>
+    <script src="../../functions/dm_average.js"></script>
+
+
+
+
+</body>
+
+</html>
